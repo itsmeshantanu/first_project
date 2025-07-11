@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinSolve – Empowering Financial Decisions</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="finsolve-calculators.js"></script>
+
+  <style>
+    /* === Global Styles === */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #121212;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .dark-mode {
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    .dark-mode input,
+    .dark-mode select,
+    .dark-mode textarea {
+      background-color: #1a1a1a;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === Tab Buttons === */
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      justify-content: center;
+    }
+
+    .tab-buttons .tab-btn {
+      padding: 10px 20px;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+      background-color: transparent;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00f0ff33, 0 0 20px #00f0ff33;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab-buttons .tab-btn:hover {
+      background-color: #00f0ff;
+      color: #121212;
+      box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    }
+
+    .tab-buttons .tab-btn.active-tab {
+      background-color: #00f0ff;
+      color: #121212;
+      box-shadow: 0 0 12px #00f0ff, 0 0 24px #00f0ff;
+      border: 1px solid #00f0ff;
+    }
+
+    /* === Toggle Switch Style === */
+    .theme-toggle-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .theme-toggle {
+      appearance: none;
+      width: 60px;
+      height: 30px;
+      background: #00f0ff;
+      border-radius: 30px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    }
+
+    .theme-toggle::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: #121212;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: left 0.3s ease;
+    }
+
+    .theme-toggle:checked::before {
+      left: 33px;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="image.png" alt="FinSolve Logo" class="logo">
+    <h1>Welcome to FinSolve</h1>
+    <p class="tagline">Your one-stop hub for smarter money moves.</p>
+  </header>
+
+  <div class="theme-toggle-container">
+    <input type="checkbox" id="theme-toggle" class="theme-toggle" />
+  </div>
+
+  <nav>
+    <a href="#home"><button>Home</button></a>
+    <a href="#about"><button>About</button></a>
+    <a href="#services"><button>Services</button></a>
+    <a href="#ourwork"><button>Our Work</button></a>
+    <a href="#calculators"><button>Calculators</button></a>
+    <a href="#course"><button>Course</button></a>
+    <a href="#contact"><button>Contact</button></a>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h2>Empowering Financial Decisions</h2>
+      <p>Use our smart calculators to plan your finances.</p>
+      <p>Whether you're investing, borrowing, or saving – we’ve got tools tailored for you.</p>
+      <a href="#calculators"><button class="button">Explore Tools</button></a>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>We are Shantanu and Sahil, dedicated to simplifying financial planning through intelligent tools and services.</p>
+      <p>Our mission is to enable everyone to make confident financial choices, regardless of background.</p>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services-wrapper">
+        <ul>
+          <li>Investment Calculators</li>
+          <li>Portfolio Reviews</li>
+          <li>Policy Analysis</li>
+        </ul>
+      </div>
+      <p>Customized tools to suit salaried, self-employed, and beginner investors alike.</p>
+    </section>
+    
+
+    <section id="ourwork">
+      <h2>Our Work</h2>
+      <p>We've helped clients optimize investments and make informed insurance decisions.</p>
+      <p>From college students to working professionals, FinSolve has transformed thousands of money journeys.</p>
+    </section>
+
+    <section id="calculators">
+      <h2>Financial Calculators</h2>
+      <p>Accurate. Instant. Easy to use.</p>
+
+      <div class="tab-buttons">
+        <button class="tab-btn" data-target="sip">SIP</button>
+        <button class="tab-btn" data-target="emi">EMI</button>
+        <button class="tab-btn" data-target="cagr">CAGR</button>
+        <button class="tab-btn" data-target="irr">IRR</button>
+      </div>
+
+      <!-- SIP Calculator -->
+      <section id="sip" class="calculator-tab">
+        <h2>SIP Calculator</h2>
+        <form id="sip-form" onsubmit="return false;">
+          <input type="number" id="sip-monthly" placeholder="Monthly Investment" required />
+          <input type="number" id="sip-rate" placeholder="Annual Return Rate (%)" required />
+          <input type="number" id="sip-years" placeholder="Years" required />
+        </form>
+        <div id="sip-error" class="error-msg"></div>
+        <div id="sip-result"></div>
+        <div class="chart-container"><canvas id="sip-chart"></canvas></div>
+        <p>Perfect for long-term wealth builders aiming for goal-based investing.</p>
+      </section>
+
+      <!-- EMI Calculator -->
+      <section id="emi" class="calculator-tab">
+        <h2>EMI Calculator</h2>
+        <form id="emi-form">
+          <input type="number" id="emi-loan" placeholder="Loan Amount" required />
+          <input type="number" id="emi-rate" placeholder="Interest Rate (%)" required />
+          <input type="number" id="emi-years" placeholder="Tenure (in years)" required />
+          <button type="submit">Calculate EMI</button>
+        </form>
+        <div id="emi-error" class="error-msg"></div>
+        <div id="emi-result"></div>
+        <div class="chart-container"><canvas id="emi-chart"></canvas></div>
+        <p>Plan your home, car, or personal loan with full clarity and foresight.</p>
+      </section>
+
+      <!-- CAGR Calculator -->
+      <section id="cagr" class="calculator-tab">
+        <h2>CAGR Calculator</h2>
+        <form id="cagr-form">
+          <input type="number" id="cagr-initial" placeholder="Initial Value" required />
+          <input type="number" id="cagr-final" placeholder="Final Value" required />
+          <input type="number" id="cagr-years" placeholder="Years" required />
+          <button type="submit">Calculate CAGR</button>
+        </form>
+        <div id="cagr-error" class="error-msg"></div>
+        <div id="cagr-result"></div>
+        <div class="chart-container"><canvas id="cagr-chart"></canvas></div>
+        <p>Understand how your investment grew annually — great for long-term tracking.</p>
+      </section>
+
+      <!-- IRR Calculator -->
+      <section id="irr" class="calculator-tab">
+        <h2>IRR Calculator</h2>
+        <form id="irr-form">
+          <div id="irr-cashflows-container">
+            <input type="number" class="irr-cashflow" placeholder="Enter Cashflow" required />
+          </div>
+          <button type="button" id="add-cashflow">Add Cashflow</button>
+          <button type="submit">Calculate IRR</button>
+        </form>
+        <div id="irr-error" class="error-msg"></div>
+        <div id="irr-result"></div>
+        <div class="chart-container"><canvas id="irr-chart"></canvas></div>
+        <p>Use this to evaluate complex investments with multiple inflows and outflows.</p>
+      </section>
+    </section>
+
+    <section id="course">
+      <h2>Our Financial Course</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+      <p>Master budgeting, investing, and money habits with our structured, beginner-friendly video course.</p>
+      <button class="course-btn">Join the Course</button>
+    </section>
+
+    <section id="contact" style="border: 2px solid #00f0ff; border-radius: 10px; padding: 20px; margin: 2rem auto; max-width: 600px; background-color: rgba(0, 240, 255, 0.05); box-shadow: 0 0 10px #00f0ff44;">
+      <h2>Contact Us</h2>
+      <p style="font-weight: bold; color: #00f0ff;">Let’s create your financial breakthrough together!</p>
+      <p><strong>Phone:</strong> 9503160463</p>
+      <p><strong>Email:</strong> <a href="mailto:uniqueultrapromax@gmail.com">uniqueultrapromax@gmail.com</a></p>
+      <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+        <img src="https://media.licdn.com/dms/image/D4D03AQE4nmnGp6lXNQ/profile-displayphoto-shrink_200_200/0/1712265223795?e=1717027200&v=beta&t=Ak9pLUinQ47spsoLMPQzLpcUkfRzqMg9yq2K63qYjEQ" alt="LinkedIn Photo" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00f0ff;">
+        <a href="https://www.linkedin.com/in/shantanu-p-7379252a9" target="_blank" style="color: #00f0ff; font-weight: bold;">Connect with Shantanu on LinkedIn</a>
+      </div>
+    </section>
+    
+    
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabButtons = document.querySelectorAll(".tab-buttons .tab-btn");
+      const calculators = document.querySelectorAll(".calculator-tab");
+
+      function showCalculator(id) {
+        calculators.forEach(section => {
+          section.style.display = section.id === id ? "block" : "none";
+          section.classList.toggle("fade-in", section.id === id);
+        });
+
+        tabButtons.forEach(btn => btn.classList.remove("active-tab"));
+        document.querySelector(`.tab-btn[data-target="${id}"]`).classList.add("active-tab");
+      }
+
+      tabButtons.forEach(button => {
+        button.addEventListener("click", () => showCalculator(button.dataset.target));
+      });
+
+      showCalculator("sip");
+    });
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        body.classList.add("dark-mode");
+        themeToggle.checked = true;
+      } else {
+        body.classList.remove("dark-mode");
+        themeToggle.checked = false;
+      }
+    }
+
+    themeToggle.addEventListener("change", () => {
+      const theme = themeToggle.checked ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+      applyTheme(theme);
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      applyTheme(savedTheme);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styling */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0d0d0d;
+  color: #f3ecec; /* 👈 Changed color to dark grey */
+  line-height: 1.6;
+  padding: 20px;
+  transition: background 0.4s, color 0.4s;
+}
+
+h1, h2 {
+  color: #ff00aa;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-shadow: 0 0 10px #00f0ff;
+}
+
+p {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #f1eded; /* 👈 Changed color to dark grey */
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #cccccc;
+}
+
+/* Nav Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+nav button {
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00f0ff33;
+}
+
+nav button:hover {
+  background-color: #00f0ff;
+  color: #0d0d0d;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+/* Calculator Sections */
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #121212;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00f0ff22;
+  color: #333333; /* 👈 Changed color to dark grey */
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+input {
+  border: 1px solid #00f0ff;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  box-shadow: 0 0 5px #00f0ff33;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+button {
+  background-color: #00f0ff;
+  color: #0d0d0d;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #00d9e6;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+/* Error Message */
+.error-msg {
+  color: #ff3c3c;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Chart Container */
+.chart-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* Tab Buttons */
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tab-buttons .tab-btn {
+  padding: 10px 20px;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  background-color: transparent;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00f0ff33;
+}
+
+.tab-buttons .tab-btn:hover {
+  background-color: #00f0ff;
+  color: #121212;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+.tab-buttons .tab-btn.active-tab {
+  background-color: #00f0ff;
+  color: #121212;
+  box-shadow: 0 0 12px #00f0ff, 0 0 24px #00f0ff;
+}
+
+/* Result Text */
+#sip-result,
+#emi-result,
+#cagr-result,
+#irr-result {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00f0ff;
+  margin-top: 10px;
+}
+
+/* Course Section */
+iframe {
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00f0ff55;
+}
+
+.course-btn {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #00f0ff;
+  color: #121212;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+/* Light Mode */
+body.light-mode {
+  background-color: #f4f4f4;
+  color: #333333; /* 👈 Ensure text is visible in light mode */
+}
+
+body.light-mode h1,
+body.light-mode h2 {
+  color: #0077ff;
+  text-shadow: none;
+}
+
+body.light-mode section {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px #0077ff22;
+  color: #e0e5e5; /* 👈 Ensure section text is visible */
+}
+
+body.light-mode input {
+  background-color: #fdfdfd;
+  color: #000;
+  border: 1px solid #0077ff;
+}
+
+body.light-mode .tab-btn,
+body.light-mode nav button {
+  color: #0077ff;
+  border-color: #0077ff;
+  box-shadow: 0 0 10px #0077ff33;
+}
+
+body.light-mode .tab-btn:hover,
+body.light-mode nav button:hover,
+body.light-mode .tab-btn.active-tab {
+  background-color: #0077ff;
+  color: #fff;
+  box-shadow: 0 0 12px #0077ff, 0 0 24px #0077ff;
+}
+
+/* Contact Section */
+#contact {
+  background: #121212;
+  color: #e83d3d; /* 👈 Ensures visibility */
+  padding: 3rem 1rem;
+  text-align: center;
+  box-shadow: 0 0 20px #00f0ff33;
+  border: 1px solid #00f0ff33;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contact-info {
+  font-size: 1rem;
+  max-width: 600px;
+  color: #333333; /* 👈 Ensure contact info is visible */
+}
+
+.contact-info a {
+  color: #00f0ff;
+  text-decoration: underline;
+}
+
+.linkedin-card {
+  background-color: #1a1a1a;
+  border: 2px solid #00f0ff55;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px #00f0ff55;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+}
+
+.linkedin-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #00f0ff88;
+  box-shadow: 0 0 10px #00f0ff88;
+  margin-bottom: 1rem;
+}
+
+.linkedin-card .name {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #00f0ff;
+}
+
+.linkedin-card .tagline {
+  font-style: italic;
+  color: #88ffff;
+  margin-top: 0.5rem;
+}
+
+.contact-info .highlight {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #00f0ffaa;
+}
+
+/* Service Section */
+#services {
+  text-align: center;
+}
+
+#services ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+  text-align: left;
+}
+
+#services li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 20px;
+  font-weight: 500;
+  color: #d5cece; /* 👈 Changed service bullet text */
+}
+
+#services li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #e8e4e4df; /* 👈 Changed service bullet dot color */
+  font-size: 20px;
+  line-height: 1;
+}
